@@ -63,8 +63,8 @@ func makePdf() {
 	for scanner.Scan() {
 		line := scanner.Text()
 		if strings.HasPrefix(line, "****A") && strings.Contains(line, "START") {
-			parts := strings.Split(line, " ")
-			jobname = fmt.Sprintf("%+v-JOB%+v", parts[8], parts[6])
+			parts := strings.Split(line, "  ")
+			jobname = fmt.Sprintf("%+v-JOB_%+v", parts[4], strings.ReplaceAll(parts[11], " ", "_"))
 		}
 		page := m.GetCurrentPage()
 		if strings.HasPrefix(line, "\f") && !firstRun {
